@@ -1,25 +1,25 @@
 const translations = {
-    "hello": "hola",
-    "goodbye": "adiós",
-    "please": "por favor",
-    "thank you": "gracias",
-    "yes": "sí",
-    "no": "no",
-    // Add more words or phrases as needed
+    "hello": "नमस्ते",
+    "goodbye": "अलविदा",
+    "please": "कृपया",
+    "thank you": "धन्यवाद",
+    "yes": "हाँ",
+    "no": "नहीं",
+    "morning": "सुबह",
+    "night": "रात",
+    "food": "भोजन",
+    "water": "पानी",
+    "how are you": "आप कैसे हैं?",
 };
 
 document.getElementById('translateButton').addEventListener('click', () => {
     const inputText = document.getElementById('inputText').value.toLowerCase();
-    const targetLanguage = document.getElementById('languageSelect').value;
+    
+    // Remove punctuation to improve accuracy
+    const cleanedText = inputText.replace(/[^\w\s]/g, "");
 
-    let translatedText = '';
-
-    if (targetLanguage === 'es') { // Spanish translation
-        const words = inputText.split(' ');
-        translatedText = words.map(word => translations[word] || word).join(' ');
-    } else {
-        translatedText = 'Translation not available for this language.';
-    }
+    const words = cleanedText.split(' ');
+    let translatedText = words.map(word => translations[word] || word).join(' ');
 
     document.getElementById('outputArea').innerText = translatedText;
 });
